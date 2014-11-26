@@ -28,7 +28,6 @@ get '/' do
   haml :index
 end
 
-
 __END__
 
 @@ layout
@@ -38,9 +37,11 @@ __END__
 
 @@ index
 .title 
-  = "J'ai trouvé #{@@liste.count} tweets contenant le mot \"educatice\""
+  %p= "J'ai trouvé #{@@liste.count} tweets contenant le mot \"educatice\""
+  %p= "Ils ont été rédigés par #{@bavards.count} personnes"
+
 %a{href: '/recherche'} Lancer la recherche
 .bavards
   %h2 Les plus bavards
-  - @bavards.each do |bavard|
-    = "#{bavard.key} : #{bavard.value}" 
+  - @bavards.each do |nom, compteur|
+    %p= "#{compteur} par @#{nom}" 
